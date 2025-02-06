@@ -33,18 +33,29 @@
       font-size: 1.2rem;
       margin-bottom: 30px;
     }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
     button {
       background: #e91e63;
       color: white;
       border: none;
-      padding: 10px 20px;
-      font-size: 1rem;
+      padding: 15px 30px;
+      font-size: 1.2rem;
       border-radius: 25px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+    }
+    button#si {
+      background: #ff85a2;
+    }
+    button#no {
+      background: #ffb6c1;
     }
     button:hover {
-      background: #c2185b;
+      transform: scale(1.1);
     }
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -65,8 +76,11 @@
 <body>
   <div class="container">
     <h1>¿Quieres ser mi San Valentín?</h1>
-    <p>Agradezco a la vida por permitirme reencontrarme contigo, me gustas mucho</p>
-    <button onclick="mostrarRespuesta()">¡Haz clic aquí!</button>
+    <p>Sé que nos estamos conociendo nuevamente princesa, por ello, quiero hacer las cosas bien desde el principio</p>
+    <div class="buttons">
+      <button id="si">Sí</button>
+      <button id="no">No</button>
+    </div>
   </div>
 
   <!-- Animación de corazones -->
@@ -81,9 +95,27 @@
   <div class="hearts" style="left: 90%;">💟</div>
 
   <script>
-    function mostrarRespuesta() {
-      alert("¡Gracias por aceptar ser mi San Valentín, mi hermosa pochita! 💖");
-    }
+    const btnSi = document.getElementById('si');
+    const btnNo = document.getElementById('no');
+
+    btnSi.addEventListener('click', () => {
+      alert('¡Gracias, mi pochita hermosa! Me encantas. 💖');
+    });
+
+    btnNo.addEventListener('mouseover', () => {
+      // Cambia la posición del botón "No" aleatoriamente
+      const randomX = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+      const randomY = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+      btnNo.style.position = 'absolute';
+      btnNo.style.left = `${randomX}px`;
+      btnNo.style.top = `${randomY}px`;
+
+      // Reduce el tamaño del botón "No" y aumenta el del botón "Sí"
+      btnNo.style.transform = 'scale(0.9)';
+      btnSi.style.transform = 'scale(1.1)';
+      //-- Actualización forzada para GitHub Pages -->
+
+    });
   </script>
 </body>
 </html>
